@@ -40,12 +40,9 @@ namespace WishList.Controllers
         [HttpDelete]
         public IActionResult Delete(int Id)
         {
-            var item = _context.Items.Find(Id);
-            if (item.Id == Id)
-            {
+            var item = _context.Items.FirstOrDefault(i => i.Id == Id);
                 _context.Items.Remove(item);
                 _context.SaveChanges();
-            }
 
             return RedirectToAction("Index");
         }
